@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  background: #fff;
+}
+
+.MenuLogo_group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 22px;
+  color: inherit;
+}
+
+.searchInput {
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 14px;
+  min-width: 300px;
+
+  &::placeholder {
+    opacity: .5;
+  }
+}

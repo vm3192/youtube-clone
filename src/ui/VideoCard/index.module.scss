@@ -1,0 +1,43 @@
+.video_wrapper {
+  flex: 0 0 300px;
+  margin-bottom: 40px;
+}
+
+.video_banner {
+  width: 345px;
+  height: 195px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.video_title {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+  max-height: 44px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+}
+
+.channel_title {
+  text-transform: capitalize;
+  max-height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+
+}
+
+.channel_title, .date {
+  line-height: 20px;
+  color: #606060;
+}

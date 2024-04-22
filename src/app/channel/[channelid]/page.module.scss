@@ -1,0 +1,77 @@
+.banner {
+  border-radius: 12px;
+  overflow: hidden;
+  padding-top: 16.12%;
+  position: relative;
+  margin-bottom: 12px;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.channel_box {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.channel_avatar {
+  flex: 0 0 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.channel_title {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-bottom: 4px;
+}
+
+.channel_stats {
+  display: flex;
+  gap: 4px;
+  line-height: 20px;
+  color: #606060;
+  margin-bottom: 10px;
+}
+
+.channel_description {
+  line-height: 20px;
+  color: #606060;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+}
+
+.tape_title {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+}
+
+.videos_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

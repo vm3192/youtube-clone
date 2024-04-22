@@ -1,0 +1,29 @@
+@import "@/lib/variables.scss";
+
+.navigation {
+  flex: 0 0 175px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.list_item {
+  font-size: 20px;
+  color: $lightmode_font;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: inherit;
+  }
+}
