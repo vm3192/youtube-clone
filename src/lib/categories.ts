@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { IoMdHome } from 'react-icons/io';
 import { MdOutlineLiveTv } from "react-icons/md";
 import { FaLaptopCode } from "react-icons/fa";
@@ -8,13 +7,7 @@ import { MdOutlineCardTravel } from "react-icons/md";
 import { MdOutlineQueueMusic } from "react-icons/md";
 import { BiMoviePlay } from "react-icons/bi";
 import { MdSportsFootball } from "react-icons/md";
-
-type Category = {
-  id: number;
-  category: string;
-  icon: FC;
-  link: string;
-}
+import { Category } from '@/lib/definitions';
 
 export const categories: Category[] = [
   {

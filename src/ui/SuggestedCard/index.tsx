@@ -1,26 +1,36 @@
 import React, { FC } from "react";
 import styles from "@/ui/SuggestedCard/index.module.scss";
 import Image from "next/image";
+import { VideoCardType } from "@/lib/definitions";
+import { formatDate } from "@/lib/utils";
+import Link from "next/link";
 
-type Props = {};
+type Props = {
+  data: VideoCardType;
+};
 
-const SuggestedCard: FC = (props: Props) => {
+const SuggestedCard: FC<Props> = ({ data }) => {
+  const {
+    id: { videoId },
+    snippet: { thumbnails, title, channelTitle, publishedAt, channelId },
+  } = data;
+
   return (
     <div className={styles.suggested_wrapper}>
-      <div className={styles.preview_wrapper}>
+      <Link className={styles.preview_wrapper} href={`/video/${videoId}`}>
         <Image
-          src={`https://placehold.jp/345x195.png`}
+          src={thumbnails.default?.url || "https://placehold.jp/345x195.png"}
           alt="video preview"
           fill
         />
-      </div>
+      </Link>
       <div className={styles.video_info}>
-        <h4 className={styles.video_title}>video title</h4>
-        <h5 className={styles.channel_title}>channel title</h5>
+        <Link className={styles.video_title} href={videoId}>{title}</Link>
+        <Link className={styles.channel_title} href={`/channel/${channelId}`}>
+          {channelTitle}
+        </Link>
         <div className={styles.video_stats}>
-          <span>53k views</span>
-          <span>•</span>
-          <span>1 year ago</span>
+          <span>{publishedAt && formatDate(publishedAt)}</span>
         </div>
       </div>
     </div>

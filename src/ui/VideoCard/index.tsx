@@ -1,18 +1,48 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import styles from "@/ui/VideoCard/index.module.scss";
+import { VideoCardType } from "@/lib/definitions";
+import Link from "next/link";
+import { formatDate } from "@/lib/utils";
 
-type Props = {};
+type Props = {
+  data: VideoCardType;
+};
 
-const VideoCard: FC = (props: Props) => {
+const VideoCard: FC<Props> = ({ data }) => {
+  const {
+    id: { videoId },
+    snippet: {
+      publishedAt,
+      channelId,
+      thumbnails: {
+        high: { url },
+      },
+      title,
+      channelTitle,
+    },
+  } = data;
+
+  const formattedDate = formatDate(publishedAt);
+
   return (
     <div className={styles.video_wrapper}>
-      <div className={styles.video_banner}>
-        <Image src={`https://placehold.jp/345x195.png`} alt="video" fill />
-      </div>
-      <h2 className={styles.video_title}>video title</h2>
-      <h3 className={styles.channel_title}>channel title</h3>
-      <p className={styles.date}>13/04/24</p>
+      <Link href={`/video/${videoId}`}>
+        <div className={styles.video_banner}>
+          <Image
+            src={url ? `${url}` : "https://placehold.jp/345x195.png"}
+            alt="video"
+            fill
+          />
+        </div>
+      </Link>
+      <Link className={styles.video_title} href={`/video/${videoId}`}>
+        {title}
+      </Link>
+      <Link href={`/channel/${channelId}`}>
+        <h3 className={styles.channel_title}>{channelTitle}</h3>
+      </Link>
+      <p className={styles.date}>{formattedDate}</p>
     </div>
   );
 };

@@ -1,15 +1,22 @@
 .video_wrapper {
-  flex: 0 0 300px;
+  flex: 0 0 32%;
   margin-bottom: 40px;
 }
 
 .video_banner {
-  width: 345px;
-  height: 195px;
+  width: 100%;
+  padding-top: 56%;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 12px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
 }
 
 .video_title {
@@ -19,6 +26,7 @@
   margin-bottom: 4px;
   text-transform: capitalize;
   max-height: 44px;
+  color: inherit;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
