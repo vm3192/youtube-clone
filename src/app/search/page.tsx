@@ -1,19 +1,23 @@
-import React, { FC } from 'react'
-import SearchCard from '@/ui/SearchCard'
-import styles from "@/app/search/page.module.scss"
+import React, { FC } from "react";
+import SearchCard from "@/ui/SearchCard";
+import styles from "@/app/search/page.module.scss";
+import { getByCategory } from "@/lib/data";
+import { VideoCardType } from "@/lib/definitions";
 
-const data = ['1', '2', '3', '4', '5']
+type Props = {
+  searchParams: string;
+};
 
-type Props = {}
+const SearchPage: FC<Props> = async ({ searchParams }) => {
+  const videos = await getByCategory(searchParams);
 
-const SearchPage: FC = (props: Props) => {
   return (
     <div className={styles.search_wrapper}>
-      {data.map(item => (
-        <SearchCard key={`1`} />
+      {videos.map((video: VideoCardType) => (
+        <SearchCard key={video.id.videoId} data={video} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default SearchPage;

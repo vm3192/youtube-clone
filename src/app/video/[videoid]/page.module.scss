@@ -16,13 +16,6 @@
   border-radius: 12px;
   overflow: hidden;
   position: relative;
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-  }
 }
 
 .video_title {
@@ -120,6 +113,7 @@
 
 .suggested_box {
   flex: 0 0 402px;
+  margin-bottom: 16px;
 }
 
 .suggested_title {

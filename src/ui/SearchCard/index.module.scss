@@ -14,14 +14,14 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    object-fit: cover;
   }
 }
 
 .video_title {
   font-size: 18px;
   line-height: 26px;
+  color: inherit;
 }
 
 .video_stats {
@@ -36,22 +36,6 @@
 .channel_info {
   display: flex;
   gap: 8px;
-}
-
-.channel_avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .channel_title {

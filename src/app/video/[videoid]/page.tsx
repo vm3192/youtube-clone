@@ -4,10 +4,16 @@ import Image from "next/image";
 import Comment from "@/ui/Comment";
 import { BiSolidLike } from "react-icons/bi";
 import SuggestedCard from "@/ui/SuggestedCard";
-import { getChannelDetails, getComments, getSuggestedVideos, getVideoDetails } from "@/lib/data";
+import {
+  getChannelDetails,
+  getComments,
+  getSuggestedVideos,
+  getVideoDetails,
+} from "@/lib/data";
 import Link from "next/link";
 import { formatCountWithComma, formatCount, formatDate } from "@/lib/utils";
 import { CommentType, VideoCardType } from "@/lib/definitions";
+import Player from "@/ui/Player";
 
 type Props = {
   params: {
@@ -17,14 +23,7 @@ type Props = {
 
 const VideoPage: FC<Props> = async ({ params }) => {
   const {
-    snippet: {
-      publishedAt,
-      channelId,
-      title,
-      description,
-      thumbnails,
-      channelTitle,
-    },
+    snippet: { publishedAt, channelId, title, description, channelTitle },
     statistics: { viewCount, likeCount, commentCount },
   } = await getVideoDetails(params.videoId);
   const comments = await getComments(params.videoId);
@@ -36,7 +35,7 @@ const VideoPage: FC<Props> = async ({ params }) => {
     <div className={styles.wrapper}>
       <div className={styles.video_box}>
         <div className={styles.video_area}>
-          <Image src={thumbnails.high.url} alt="video" fill />
+          <Player id={params.videoId} />
         </div>
         <h2 className={styles.video_title}>{title}</h2>
         <div className={styles.video_bio}>
@@ -72,21 +71,29 @@ const VideoPage: FC<Props> = async ({ params }) => {
           </div>
           <div className={styles.video_description}>{description}</div>
         </div>
-        <h6 className={styles.comments_title}>
-          {formatCountWithComma(commentCount)} Comments
-        </h6>
-        <div className={styles.comments_container}>
-          {comments && comments.map((comment: CommentType) => (
-            <Comment key={comment.id} data={comment} />
-          ))}
-        </div>
+        {comments?.length > 0 && (
+          <>
+            <h6 className={styles.comments_title}>
+              {formatCountWithComma(commentCount)} Comments
+            </h6>
+            <div className={styles.comments_container}>
+              {comments.map((comment: CommentType) => (
+                <Comment key={comment.id} data={comment} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <div className={styles.suggested_box}>
         <h3 className={styles.suggested_title}>Suggested videos</h3>
         <div className={styles.suggested_container}>
-          {suggestedVideos ? suggestedVideos.map((video: VideoCardType) => (
-            <SuggestedCard key={video.id.videoId} data={video} />
-          )) : <p>Nothing...</p>}
+          {suggestedVideos ? (
+            suggestedVideos.map((video: VideoCardType) => (
+              <SuggestedCard key={video.id.videoId} data={video} />
+            ))
+          ) : (
+            <p>Nothing...</p>
+          )}
         </div>
       </div>
     </div>
