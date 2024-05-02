@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.scss";
 import Header from "@/ui/Header";
 import Navbar from "@/ui/Navbar";
+import { BurgerMenuContextProvider } from "@/lib/context/BurgerMenuContext";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -18,11 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <Header />
-        <Navbar />
-        <main className="main">{children}</main>
-      </body>
+      <BurgerMenuContextProvider>
+        <body className={roboto.className}>
+          <Header />
+          <Navbar />
+          <main className="main">{children}</main>
+        </body>
+      </BurgerMenuContextProvider>
     </html>
   );
 }

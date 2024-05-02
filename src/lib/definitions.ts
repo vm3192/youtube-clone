@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 export type Category = {
   id: number;
@@ -53,4 +53,9 @@ export type CommentType = {
       }
     };
   }
+}
+
+export type BurgerMenuContextType = {
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }

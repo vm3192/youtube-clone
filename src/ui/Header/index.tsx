@@ -6,6 +6,7 @@ import React, {
   FormEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
+  useContext,
   useState,
 } from "react";
 import styles from "@/ui/Header/index.module.scss";
@@ -14,6 +15,7 @@ import { AiFillYoutube } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { BurgerMenuContext } from "@/lib/context/BurgerMenuContext";
 
 type Props = {};
 
@@ -21,6 +23,7 @@ const Header: FC<Props> = () => {
   const [searchValue, setSearchValue] = useState("");
   const params = new URLSearchParams();
   const { replace } = useRouter();
+  const { isOpen, setIsOpen } = useContext(BurgerMenuContext)!;
 
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -45,11 +48,15 @@ const Header: FC<Props> = () => {
       setSearchValue("");
     }
   };
-  
+
+  const handleClickBurger = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.MenuLogo_group}>
-        <RxHamburgerMenu size={22} />
+        <RxHamburgerMenu size={22} onClick={handleClickBurger} className={styles.burger} />
         <Link className={styles.logo} href="/">
           <AiFillYoutube />
           YTClone
