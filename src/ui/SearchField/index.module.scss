@@ -1,0 +1,23 @@
+.searchForm {
+  position: relative;
+}
+
+.searchInput {
+  border: 1px solid #ccc;
+  padding: 8px 34px 8px 16px;
+  border-radius: 14px;
+  min-width: 300px;
+
+  &::placeholder {
+    opacity: .5;
+  }
+}
+
+.searchIcon {
+  font-size: 18px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
