@@ -12,6 +12,10 @@
   background: #fff;
 }
 
+.header.darkmode {
+  background: #000;
+}
+
 .burger {
   cursor: pointer;
 }
@@ -52,4 +56,42 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+.darkmodeButton {
+  width: 30px;
+  height: 16px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  position: relative;
+  background: #fff;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.darkmodeButton.active {
+  border: 1px solid #fff;
+  background: #000;
+
+  &::before {
+    background: #fff;
+    left: auto;
+    right: 1px;
+  }
 }

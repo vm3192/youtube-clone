@@ -7,6 +7,7 @@ import React, {
   KeyboardEventHandler,
   MouseEventHandler,
   useContext,
+  useRef,
   useState,
 } from "react";
 import styles from "@/ui/Header/index.module.scss";
@@ -16,6 +17,7 @@ import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BurgerMenuContext } from "@/lib/context/BurgerMenuContext";
+import { DarkmodeContext } from "@/lib/context/DarkmodeContext";
 
 type Props = {};
 
@@ -24,6 +26,8 @@ const Header: FC<Props> = () => {
   const params = new URLSearchParams();
   const { replace } = useRouter();
   const { isOpen, setIsOpen } = useContext(BurgerMenuContext)!;
+  const { darkmode, setDarkmode } = useContext(DarkmodeContext)!;
+  const darkmodeRef = useRef<HTMLInputElement>(null)
 
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -50,13 +54,25 @@ const Header: FC<Props> = () => {
   };
 
   const handleClickBurger = () => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
+  };
+
+  const darkmodeHandler = () => {
+    setDarkmode(!darkmode);
+  };
+
+  const darkmodeClickHandle = () => {
+    darkmodeRef.current?.click()
   }
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${darkmode ? styles.darkmode : ""}`}>
       <div className={styles.MenuLogo_group}>
-        <RxHamburgerMenu size={22} onClick={handleClickBurger} className={styles.burger} />
+        <RxHamburgerMenu
+          size={22}
+          onClick={handleClickBurger}
+          className={styles.burger}
+        />
         <Link className={styles.logo} href="/">
           <AiFillYoutube />
           YTClone
@@ -72,11 +88,17 @@ const Header: FC<Props> = () => {
           onChange={handleSearchInput}
           onKeyDown={handleKeyPress}
         />
-        <CiSearch className={styles.searchIcon} onClick={handleSearchClick} />
+        <CiSearch className={styles.searchIcon} style={{color: "#ccc"}} onClick={handleSearchClick} />
       </form>
-      <div className={styles.darkmode}>
-        <input type="checkbox" id="darkmode" value="darkmode" />
-        <label htmlFor="darkmode">darkmode</label>
+      <div className={`${styles.darkmodeButton} ${darkmode ? styles.active : ""}`} onClick={darkmodeClickHandle}>
+        <input
+          type="checkbox"
+          id="darkmode"
+          value="darkmode"
+          onClick={darkmodeHandler}
+          ref={darkmodeRef}
+        />
+        <label htmlFor="darkmode"></label>
       </div>
     </header>
   );

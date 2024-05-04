@@ -59,3 +59,8 @@ export type BurgerMenuContextType = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
+
+export type DarkmodeContextType = {
+  darkmode: boolean;
+  setDarkmode: Dispatch<SetStateAction<boolean>>;
+}
