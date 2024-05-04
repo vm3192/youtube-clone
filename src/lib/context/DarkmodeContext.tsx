@@ -1,8 +1,13 @@
 "use client";
 
 import { ReactNode, createContext, useState } from "react";
-import { DarkmodeContextType } from "../definitions";
-import { roboto } from "@/app/layout";
+import { DarkmodeContextType } from "@/lib/definitions";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 const DarkmodeContext = createContext<DarkmodeContextType | undefined>(
   undefined,
