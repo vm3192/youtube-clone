@@ -1,19 +1,13 @@
 import React, { FC } from "react";
 import styles from "@/app/video/[videoid]/page.module.scss";
 import Image from "next/image";
-import Comment from "@/ui/Comment";
 import { BiSolidLike } from "react-icons/bi";
-import SuggestedCard from "@/ui/SuggestedCard";
-import {
-  getChannelDetails,
-  getComments,
-  getSuggestedVideos,
-  getVideoDetails,
-} from "@/lib/data";
+import { getChannelDetails, getVideoDetails } from "@/lib/data";
 import Link from "next/link";
-import { formatCountWithComma, formatCount, formatDate } from "@/lib/utils";
-import { CommentType, VideoCardType } from "@/lib/definitions";
+import { formatCount, formatDate } from "@/lib/utils";
 import Player from "@/ui/Player";
+import SuggestedVideos from "@/ui/SuggestedVideos";
+import VideoComments from "@/ui/VideoComments";
 
 type Props = {
   params: {
@@ -26,8 +20,6 @@ const VideoPage: FC<Props> = async ({ params }) => {
     snippet: { publishedAt, channelId, title, description, channelTitle },
     statistics: { viewCount, likeCount, commentCount },
   } = await getVideoDetails(params.videoId);
-  const comments = await getComments(params.videoId);
-  const suggestedVideos = await getSuggestedVideos(params.videoId);
   const channelDetails = await getChannelDetails(channelId);
   const formattedDate = formatDate(publishedAt);
 
@@ -71,31 +63,9 @@ const VideoPage: FC<Props> = async ({ params }) => {
           </div>
           <div className={styles.video_description}>{description}</div>
         </div>
-        {comments?.length > 0 && (
-          <>
-            <h6 className={styles.comments_title}>
-              {formatCountWithComma(commentCount)} Comments
-            </h6>
-            <div className={styles.comments_container}>
-              {comments.map((comment: CommentType) => (
-                <Comment key={comment.id} data={comment} />
-              ))}
-            </div>
-          </>
-        )}
+        <VideoComments params={params} commentCount={commentCount} />
       </div>
-      <div className={styles.suggested_box}>
-        <h3 className={styles.suggested_title}>Suggested videos</h3>
-        <div className={styles.suggested_container}>
-          {suggestedVideos ? (
-            suggestedVideos.map((video: VideoCardType) => (
-              <SuggestedCard key={video.id.videoId} data={video} />
-            ))
-          ) : (
-            <p>Nothing...</p>
-          )}
-        </div>
-      </div>
+      <SuggestedVideos params={params} />
     </div>
   );
 };
