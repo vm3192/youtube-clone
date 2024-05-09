@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "@/app/channel/[channelId]/page.module.scss";
+import styles from "@/app/channel/[channelid]/page.module.scss";
 import VideoCard from "@/ui/VideoCard";
 import Image from "next/image";
 import { getChannelDetails, getVideosByChannel } from "@/lib/data";
