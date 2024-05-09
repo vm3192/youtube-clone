@@ -6,12 +6,12 @@ import { VideoCardType } from "@/lib/definitions";
 
 type Props = {
   params: {
-    videoId: string;
+    videoid: string;
   };
 };
 
 const SuggestedVideos: FC<Props> = async ({ params }) => {
-  const suggestedVideos = await getSuggestedVideos(params.videoId);
+  const suggestedVideos = await getSuggestedVideos(params.videoid);
 
   return (
     <div className={styles.suggested_box}>
@@ -19,7 +19,7 @@ const SuggestedVideos: FC<Props> = async ({ params }) => {
       <div className={styles.suggested_container}>
         {suggestedVideos ? (
           suggestedVideos.map((video: VideoCardType) => (
-            <SuggestedCard key={video.id.videoId} data={video} />
+            video.id.videoId && <SuggestedCard key={video.id.videoId} data={video} />
           ))
         ) : (
           <p>Nothing...</p>

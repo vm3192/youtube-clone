@@ -25,7 +25,7 @@ const SuggestedCard: FC<Props> = ({ data }) => {
         />
       </Link>
       <div className={styles.video_info}>
-        <Link className={styles.video_title} href={videoId}>{title}</Link>
+        <Link className={styles.video_title} href={`/video/${videoId}`}>{title}</Link>
         <Link className={styles.channel_title} href={`/channel/${channelId}`}>
           {channelTitle}
         </Link>

@@ -7,13 +7,13 @@ import Comment from "@/ui/Comment";
 
 type Props = {
   params: {
-    videoId: string;
+    videoid: string;
   };
   commentCount: string;
 };
 
 const VideoComments: FC<Props> = async ({ params, commentCount }) => {
-  const comments = await getComments(params.videoId);
+  const comments = await getComments(params.videoid);
   return (
     <>
       {comments?.length > 0 && (

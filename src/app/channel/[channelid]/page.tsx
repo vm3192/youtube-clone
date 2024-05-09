@@ -8,15 +8,15 @@ import { formatCount, formatCountWithComma } from "@/lib/utils";
 
 type Props = {
   params: {
-    channelId: string;
+    channelid: string;
   }
 };
 
 const ChannelPage: FC<Props> = async ({ params }) => {
-  const channelDetails = await getChannelDetails(params.channelId);
+  const channelDetails = await getChannelDetails(params.channelid);
   const { title, customUrl, description, thumbnails } = channelDetails.snippet;
   const { subscriberCount, videoCount } = channelDetails.statistics
-  const videos = await getVideosByChannel(params.channelId);
+  const videos = await getVideosByChannel(params.channelid);
 
   return (
     <>

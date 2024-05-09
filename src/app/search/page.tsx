@@ -27,7 +27,7 @@ const SearchPage: FC<Props> = ({ searchParams }) => {
   return (
     <div className={styles.search_wrapper}>
       {videos.map((video: VideoCardType) => (
-        <SearchCard key={video.id.videoId} data={video} />
+        video.id.videoId && <SearchCard key={video.id.videoId} data={video} />
       ))}
     </div>
   );

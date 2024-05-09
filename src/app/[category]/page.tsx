@@ -26,8 +26,8 @@ const CategoryPage: FC<Props> = ({ params }) => {
     <>
       <h1 className={styles.category_title}>{category}</h1>
       <div className={styles.videos_wrapper}>
-        {data.map((card: VideoCardType) => (
-          <VideoCard key={card.id.videoId} data={card} />
+        {data?.map((card: VideoCardType) => (
+          card.id.videoId && <VideoCard key={card.id.videoId} data={card} />
         ))}
       </div>
     </>

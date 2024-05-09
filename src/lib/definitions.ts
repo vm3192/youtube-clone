@@ -5,11 +5,11 @@ export type Category = {
   category: string;
   icon: FC;
   link: string;
-}
+};
 
 export type VideoCardType = {
   kind: string;
-  id: { kind: string; videoId: string };
+  id: { kind: string; videoId?: string; playlistId?: string };
   snippet: {
     publishedAt: string;
     channelId: string;
@@ -50,17 +50,17 @@ export type CommentType = {
         authorProfileImageUrl: string;
         likeCount: number;
         publishedAt: string;
-      }
+      };
     };
-  }
-}
+  };
+};
 
 export type BurgerMenuContextType = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 export type DarkmodeContextType = {
   darkmode: boolean;
   setDarkmode: Dispatch<SetStateAction<boolean>>;
-}
+};

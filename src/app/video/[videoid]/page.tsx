@@ -11,7 +11,7 @@ import VideoComments from "@/ui/VideoComments";
 
 type Props = {
   params: {
-    videoId: string;
+    videoid: string;
   };
 };
 
@@ -19,7 +19,7 @@ const VideoPage: FC<Props> = async ({ params }) => {
   const {
     snippet: { publishedAt, channelId, title, description, channelTitle },
     statistics: { viewCount, likeCount, commentCount },
-  } = await getVideoDetails(params.videoId);
+  } = await getVideoDetails(params.videoid);
   const channelDetails = await getChannelDetails(channelId);
   const formattedDate = formatDate(publishedAt);
 
@@ -27,7 +27,7 @@ const VideoPage: FC<Props> = async ({ params }) => {
     <div className={styles.wrapper}>
       <div className={styles.video_box}>
         <div className={styles.video_area}>
-          <Player id={params.videoId} />
+          <Player id={params.videoid} />
         </div>
         <h2 className={styles.video_title}>{title}</h2>
         <div className={styles.video_bio}>
