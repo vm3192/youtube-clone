@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Image from "next/image";
 import styles from "@/ui/VideoCard/index.module.scss";
 import { VideoCardType } from "@/lib/definitions";
 import Link from "next/link";
@@ -29,10 +28,9 @@ const VideoCard: FC<Props> = ({ data }) => {
     <div className={styles.video_wrapper}>
       <Link href={`/video/${videoId}`}>
         <div className={styles.video_banner}>
-          <Image
+          <img
             src={url ? `${url}` : "https://placehold.jp/345x195.png"}
             alt="video"
-            fill
           />
         </div>
       </Link>

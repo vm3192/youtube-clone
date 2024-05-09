@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import styles from "@/app/video/[videoid]/page.module.scss";
-import Image from "next/image";
 import { BiSolidLike } from "react-icons/bi";
 import { getChannelDetails, getVideoDetails } from "@/lib/data";
 import Link from "next/link";
@@ -33,10 +32,9 @@ const VideoPage: FC<Props> = async ({ params }) => {
         <div className={styles.video_bio}>
           <div className={styles.video_channel}>
             <div className={styles.channel_avatar}>
-              <Image
+              <img
                 src={channelDetails.snippet.thumbnails.high.url}
                 alt="channel avatar"
-                fill
               />
             </div>
             <div className={styles.channel_stats}>
